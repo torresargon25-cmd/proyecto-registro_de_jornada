@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.salesianos.dam</groupId>
-	<artifactId>01_PrimerEjemplo</artifactId>
+	<artifactId>registrodejornada</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>
