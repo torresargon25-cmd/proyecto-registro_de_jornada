@@ -1,15 +1,12 @@
 package com.example.registrodejornada.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Data
@@ -25,6 +22,12 @@ public class Departamento {
     private String nombre;
 
     private BigDecimal presupuesto;
+
+    @OneToMany (mappedBy = "departamento")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @Builder.Default
+    private List<Empleado> empleados = new ArrayList<>();
 
 
 

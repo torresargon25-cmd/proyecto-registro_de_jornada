@@ -1,9 +1,6 @@
 package com.example.registrodejornada.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +20,7 @@ public class Empleado {
     private String nombreCompleto;
     private String cargo;
     private BigDecimal salario;
+
 
     @ManyToOne
     private Departamento departamento;
