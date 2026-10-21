@@ -1,5 +1,6 @@
 package com.example.registrodejornada.error;
 
+import com.example.registrodejornada.error.conflict.FichajeDuplicadoException;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
 import java.net.URI;
 import java.util.List;
 
@@ -116,5 +116,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             }
             return field;
         }
+    }
+    @ExceptionHandler(FichajeDuplicadoException.class)
+    public ProblemDetail handleFichajeDuplicado(FichajeDuplicadoException ex) {
+        ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.CONFLICT);
+        problem.setTitle("Fichaje duplicado");
+        problem.setDetail(ex.getMessage());
+        problem.setType(URI.create("https://example.com/errors/conflict"));
+        return problem;
     }
 }
