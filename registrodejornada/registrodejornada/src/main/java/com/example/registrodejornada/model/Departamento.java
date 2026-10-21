@@ -25,6 +25,9 @@ public class Departamento {
 
 
     @OneToMany (mappedBy = "departamento")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @Builder.Default
     private List<Empleado> empleados = new ArrayList<>();
 
 

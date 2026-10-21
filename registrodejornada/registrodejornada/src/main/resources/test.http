@@ -24,3 +24,86 @@ GET http://localhost:8080/api/v1/departamentos
 ### GET traer departamento por ID
 
 GET http://localhost:8080/api/v1/departamentos/1
+
+### PUT para actualizar un departamento
+
+PUT http://localhost:8080/api/v1/departamentos/2
+
+{
+    "nombre": "DI",
+    "presupuesto": 5000
+}
+
+### DELETE para borrar un departamento
+
+DELETE http://localhost:8080/api/v1/departamentos/2
+
+
+
+
+### POST para crear un empleado
+
+POST http://localhost:8080/api/v1/empleados
+
+
+
+  {
+    "nombreCompleto": "Ana Gómez",
+    "cargo": "Desarrolladora Senior",
+    "salario": 3500.50,
+    "departamentoId": 1
+  }
+
+  /*
+  ,{
+    "nombreCompleto": "Carlos Pérez",
+    "cargo": "Diseñador UX",
+    "salario": 2800.00,
+    "departamentoId": 1
+  }
+  ,{
+    "nombreCompleto": "Luis Martínez",
+    "cargo": "Analista de Datos",
+    "salario": 3100.00,
+    "departamentoId": 2
+  }
+
+  ,{
+    "nombreCompleto": "Sofía Ruiz",
+    "cargo": "Gerente de Proyecto",
+    "salario": 4200.00,
+    "departamentoId": 3
+  }
+
+  ,{
+    "nombreCompleto": "Diego Torres",
+    "cargo": "Especialista DevOps",
+    "salario": 3900.75,
+    "departamentoId": 1
+  }
+  */
+
+
+### GET para traer todos los empleados de vuelta
+
+GET http://localhost:8080/api/v1/empleados
+
+### GET para traer un empleado por id
+
+GET http://localhost:8080/api/v1/empleados/1
+
+### PUT para actualizar un empleado
+
+PUT http://localhost:8080/api/v1/empleados/1
+
+{
+  "id": 1,
+  "nombreCompleto": "Ana Gómez Modificado",
+  "cargo": "Líder de Proyecto",
+  "salario": 4100.00,
+  "departamentoId": 1
+}
+
+### DELETE para borrar un empleado
+
+DELETE http://localhost:8080/api/v1/empleados/1
