@@ -1,0 +1,21 @@
+#### POST crear departamento
+
+POST http://localhost:8080/api/v1/departamentos
+
+/*{
+  "nombre": "Recursos Humanos",
+  "presupuesto": 45000.50
+}*/
+
+{
+  "nombre": "Tecnología",
+  "presupuesto": 120000
+}
+
+### GET traer todos los departamentos
+
+GET http://localhost:8080/api/v1/departamentos
+
+### GET traer departamento por ID
+
+GET http://localhost:8080/api/v1/departamentos/1

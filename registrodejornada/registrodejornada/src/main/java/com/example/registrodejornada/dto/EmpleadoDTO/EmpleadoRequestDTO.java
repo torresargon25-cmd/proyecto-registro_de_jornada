@@ -1,4 +1,4 @@
-package com.example.registrodejornada.dto;
+package com.example.registrodejornada.dto.EmpleadoDTO;
 
 import jakarta.validation.constraints.*;
 

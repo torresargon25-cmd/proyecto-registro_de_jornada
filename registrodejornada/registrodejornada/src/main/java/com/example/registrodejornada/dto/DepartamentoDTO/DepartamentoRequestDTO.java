@@ -1,4 +1,4 @@
-package com.example.registrodejornada.dto;
+package com.example.registrodejornada.dto.DepartamentoDTO;
 
 import com.example.registrodejornada.model.Departamento;
 import jakarta.validation.constraints.NotBlank;

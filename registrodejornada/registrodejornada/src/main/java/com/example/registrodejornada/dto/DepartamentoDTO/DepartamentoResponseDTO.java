@@ -1,5 +1,6 @@
-package com.example.registrodejornada.dto;
+package com.example.registrodejornada.dto.DepartamentoDTO;
 
+import com.example.registrodejornada.dto.EmpleadoDTO.EmpleadoListDTO;
 import com.example.registrodejornada.model.Departamento;
 
 import java.math.BigDecimal;

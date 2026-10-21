@@ -1,9 +1,9 @@
 package com.example.registrodejornada.service;
 
+import com.example.registrodejornada.dto.DepartamentoDTO.DepartamentoRequestDTO;
 import com.example.registrodejornada.error.notfound.DepartamentoNoEncontradaException;
 import com.example.registrodejornada.model.Departamento;
 import com.example.registrodejornada.repo.DepartamentoRepository;
-import com.example.registrodejornada.repo.EmpleadoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,22 +26,30 @@ public class DepartamentoService {
 
     public Departamento getDepartmentById (Long id){
         return departamentoRepository.findById(id)
-                .orElseThrow(() -> new DepartamentoNoEncontradaException());
+                .orElseThrow(() -> new DepartamentoNoEncontradaException(id));
     }
 
-    public Departamento addDepartment (Long id, Departamento departamento){
-        return departamentoRepository.save(departamento);
+    public Departamento addDepartment (DepartamentoRequestDTO departamento){
+        return departamentoRepository.save(departamento.to());
     }
 
-    public Departamento updateDepartament (Long id, Departamento departamento){
-        if (!departamentoRepository.existsById(id)){
-            throw new DepartamentoNoEncontradaException();
-        }
-        departamento.setNombre(departamento.getNombre());
-        return departamentoRepository.save(departamento);
+    public Departamento updateDepartament (Long id, DepartamentoRequestDTO departamento) {
+
+        return departamentoRepository.findById(id)
+                .map(d -> {
+                    //falta la validacion
+                    d.setNombre(departamento.nombre());
+                    d.setPresupuesto(departamento.presupuesto());
+                    return departamentoRepository.save((d));
+                })
+                .orElseThrow(() -> new DepartamentoNoEncontradaException(id));
     }
 
     public void deleteDepartment(Long id){
         departamentoRepository.deleteById(id);
     }
-}
+
+    }
+
+
+

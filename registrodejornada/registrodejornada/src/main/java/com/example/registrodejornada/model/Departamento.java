@@ -23,10 +23,8 @@ public class Departamento {
 
     private BigDecimal presupuesto;
 
+
     @OneToMany (mappedBy = "departamento")
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @Builder.Default
     private List<Empleado> empleados = new ArrayList<>();
 
 
