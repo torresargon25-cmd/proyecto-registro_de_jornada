@@ -1,4 +1,4 @@
-#### POST crear departamento
+### POST crear departamento
 
 POST http://localhost:8080/api/v1/departamentos
 
@@ -11,6 +11,11 @@ POST http://localhost:8080/api/v1/departamentos
   "nombre": "Tecnología",
   "presupuesto": 120000
 }
+
+/*{
+    "nombre": "IAa",
+    "presupuesto": 30000
+}*/
 
 ### GET traer todos los departamentos
 

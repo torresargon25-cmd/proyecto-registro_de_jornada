@@ -38,7 +38,7 @@ public class DepartamentoController {
     }
     @PostMapping
     public ResponseEntity <DepartamentoResponseDTO> addDepartment (
-            @Valid @RequestBody DepartamentoRequestDTO departamento){
+            @RequestBody DepartamentoRequestDTO departamento){
         return ResponseEntity.status(201)
                 .body(DepartamentoResponseDTO.of(departamentoService.addDepartment(departamento)));
     }

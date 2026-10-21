@@ -14,7 +14,7 @@ public record DepartamentoResponseDTO(
        List<EmpleadoListDTO> listaEmpleados
 ) {
     public static DepartamentoResponseDTO of(Departamento d){
-        if (d == null) return null;
+        if (d == null)return null;
         return new DepartamentoResponseDTO(
                 d.getId(),
                 d.getNombre(),
