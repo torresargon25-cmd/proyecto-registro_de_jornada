@@ -62,4 +62,12 @@ public class EmpleadoService {
         return departamentoId == null ? null
                 : departamentoService.getDepartmentById(departamentoId);
     }
+
+    public Empleado assignDepartment(Long empleadoId, Long deptoId) {
+        Empleado e = getEmployeeById(empleadoId);
+        Departamento d = departamentoService.getDepartmentById(deptoId);
+        // falta validar presupuesto
+        e.setDepartamento(d);
+        return empleadoRepository.save(e);
+    }
 }

@@ -107,3 +107,23 @@ PUT http://localhost:8080/api/v1/empleados/1
 ### DELETE para borrar un empleado
 
 DELETE http://localhost:8080/api/v1/empleados/1
+
+### PUT asignar empleado a departamento
+
+PUT http://localhost:8080/api/v1/empleados/1/departamento/1
+
+### PUT reasignar el mismo empleado a otro departamento
+
+PUT http://localhost:8080/api/v1/empleados/1/departamento/2
+
+### PUT asignar: empleado inexistente (404)
+
+PUT http://localhost:8080/api/v1/empleados/99999/departamento/1
+
+### PUT asignar: departamento inexistente (404)
+
+PUT http://localhost:8080/api/v1/empleados/1/departamento/99999
+
+### GET departamento con su empleado dentro
+
+GET http://localhost:8080/api/v1/departamentos/2

@@ -54,4 +54,11 @@ public class EmpleadoController {
         empleadoService.deleteEmployee(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{empleadoId}/departamento/{deptoId}")
+    public ResponseEntity<EmpleadoResponseDTO> assignDepartment(
+            @PathVariable Long empleadoId, @PathVariable Long deptoId) {
+        return ResponseEntity.ok(
+                EmpleadoResponseDTO.of(empleadoService.assignDepartment(empleadoId, deptoId)));
+    }
 }
