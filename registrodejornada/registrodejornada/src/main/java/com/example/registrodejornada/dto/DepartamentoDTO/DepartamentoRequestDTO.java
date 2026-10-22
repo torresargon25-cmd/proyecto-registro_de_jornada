@@ -8,14 +8,14 @@ import jakarta.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
 public record DepartamentoRequestDTO(
-        @NotBlank(message = "El nombre es inválido")
+        @NotBlank(message = "{departamentoRequestDTO.nombre.notBlank}")
         String nombre,
 
-        @NotNull(message = "El presupuesto no puede ser null")
-        @PositiveOrZero(message = "El presupuesto no puede ser un número negativo")
+        @NotNull(message = "{departamentoRequestDTO.presupuesto.notNull}")
+        @PositiveOrZero(message = "{departamentoRequestDTO.presupuesto.positiveOrZero}")
         BigDecimal presupuesto
 ) {
-    public Departamento to(){
+    public Departamento to() {
         return Departamento.builder()
                 .nombre(nombre)
                 .presupuesto(presupuesto)
