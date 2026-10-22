@@ -203,3 +203,57 @@ GET http://localhost:8080/api/v1/empleados/2/fichajes
 ### GET historial de empleado inexistente (404)
 
 GET http://localhost:8080/api/v1/empleados/99999/fichajes
+
+
+### Crear departamento con presupuesto 5000
+
+POST http://localhost:8080/api/v1/departamentos
+Content-Type: application/json
+
+{
+  "nombre": "Presupuesto Test",
+  "presupuesto": 5000
+}
+
+> {% client.global.set("deptoTest", response.body.id); %}
+
+### Empleado 2500 (201)
+
+POST http://localhost:8080/api/v1/empleados
+Content-Type: application/json
+
+{
+  "nombreCompleto": "Test Uno",
+  "cargo": "Dev",
+  "salario": 2500,
+  "departamentoId": {{deptoTest}}
+}
+
+### Empleado 2000 (201, suman 4500)
+
+POST http://localhost:8080/api/v1/empleados
+Content-Type: application/json
+
+{
+  "nombreCompleto": "Test Dos",
+  "cargo": "Dev",
+  "salario": 2000,
+  "departamentoId": {{deptoTest}}
+}
+
+### Empleado 1000 (400, sumaría 5500)
+
+POST http://localhost:8080/api/v1/empleados
+Content-Type: application/json
+
+{
+  "nombreCompleto": "Test Tres",
+  "cargo": "Dev",
+  "salario": 1000,
+  "departamentoId": {{deptoTest}}
+}
+
+### Asignar a ese departamento un empleado que se pasa (400)
+### Cambia el 1 por el id de un empleado con salario alto y sin departamento
+
+PUT http://localhost:8080/api/v1/empleados/1/departamento/{{deptoTest}}

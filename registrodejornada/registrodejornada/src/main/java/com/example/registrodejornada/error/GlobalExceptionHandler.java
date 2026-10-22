@@ -125,4 +125,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         problem.setType(URI.create("https://example.com/errors/conflict"));
         return problem;
     }
+
+    @ExceptionHandler(PresupuestoExcedidoException.class)
+    public ProblemDetail handlePresupuestoExcedido(PresupuestoExcedidoException ex) {
+        ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+        problem.setTitle("Presupuesto excedido");
+        problem.setDetail(ex.getMessage());
+        problem.setType(URI.create("https://example.com/errors/budget-exceeded"));
+        return problem;
+    }
 }

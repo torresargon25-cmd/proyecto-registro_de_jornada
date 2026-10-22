@@ -1,6 +1,7 @@
 package com.example.registrodejornada.service;
 
 import com.example.registrodejornada.dto.EmpleadoDTO.EmpleadoRequestDTO;
+import com.example.registrodejornada.error.PresupuestoExcedidoException;
 import com.example.registrodejornada.error.notfound.EmpleadoNoEncontradaException;
 import com.example.registrodejornada.model.Departamento;
 import com.example.registrodejornada.model.Empleado;
@@ -8,6 +9,7 @@ import com.example.registrodejornada.repo.EmpleadoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -66,7 +68,21 @@ public class EmpleadoService {
     public Empleado assignDepartment(Long empleadoId, Long deptoId) {
         Empleado e = getEmployeeById(empleadoId);
         Departamento d = departamentoService.getDepartmentById(deptoId);
-        // falta validar presupuesto
+
+        boolean yaEstaAhi = e.getDepartamento() != null
+                && e.getDepartamento().getId().equals(d.getId());
+
+        if (!yaEstaAhi && d.getPresupuesto() != null) {
+            BigDecimal suma = empleadoRepository.sumaSalarios(d.getId())
+                    .orElse(BigDecimal.ZERO);
+            if (suma.add(e.getSalario()).compareTo(d.getPresupuesto()) > 0) {
+                throw new PresupuestoExcedidoException(
+                        "No se puede asignar a " + e.getNombreCompleto() + " al departamento "
+                                + d.getNombre() + ": la suma de salarios superaría su presupuesto de "
+                                + d.getPresupuesto());
+            }
+        }
+
         e.setDepartamento(d);
         return empleadoRepository.save(e);
     }
