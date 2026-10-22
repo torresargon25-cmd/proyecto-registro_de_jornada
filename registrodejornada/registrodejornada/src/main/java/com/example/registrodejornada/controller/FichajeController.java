@@ -8,12 +8,23 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/empleados/{empleadoId}")
 public class FichajeController {
 
     private final FichajeService fichajeService;
+
+    @GetMapping
+    public ResponseEntity <List<FichajeResponseDTO>> listadoFichajes(@PathVariable Long empleadoId){
+        return ResponseEntity.ok(
+                fichajeService.getFichajes(empleadoId).stream()
+                        .map(FichajeResponseDTO::of)
+                        .toList()
+        );
+    }
 
     @PostMapping("/fichar")
     public ResponseEntity<FichajeResponseDTO> fichar(
